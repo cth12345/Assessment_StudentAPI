@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['namespace'=>'App\Http\Controllers'],function(){
     Route::apiResource('students',StudentController::class);
 });
+
+

@@ -11,7 +11,7 @@ class UpdateStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,22 @@ class UpdateStudentRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method=$this->method();
+        if($method=='PUT'){
+            return [
+                'name'=>['required'],
+                'email'=>['required','email'],
+                'address'=>['required'],
+                'course'=>['required'],
+            ];
+        }
+        else if($method=='PATCH'){
+            return [
+                'name'=>['sometimes','required'],
+                'email'=>['sometimes','required','email'],
+                'address'=>['sometimes','required'],
+                'course'=>['sometimes','required'],
+            ];
+        }
     }
 }

@@ -13,6 +13,7 @@ class PassportController extends Controller
             'email'=>'required|string|email|unique:users',
             'password'=>'required|string|min:8',
         ]);
+   
         $user=User::create([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -24,17 +25,17 @@ class PassportController extends Controller
     }
 
     public function login(Request $request){
-        $credentials=[
+        $detail=[
             'email'=> $request->email,
             'password'=> $request->password,
         ];
         
-        if (auth()->attempt($credentials)){
+        if (auth()->attempt($detail)){
             $token=auth()->user()->createToken('PassportAuth')->accessToken;
             return response()->json(['token'=> $token],'200');
         }
         else{
-            return response()->json(['error'=>'Unauthorized'],400);
+            return response()->json(['error'=>'Authorization Failed'],400);
         }
     }
 }

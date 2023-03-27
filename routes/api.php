@@ -20,12 +20,13 @@ use App\Http\Controllers\PassportController;
 //     return $request->user();
 // });
 Route::group(['namespace'=>'App\Http\Controllers'],function(){
-    Route::post('register', 'PassportController@register');
-    Route::post('login', 'PassportController@login');
+    Route::post('register', 'PassportController@register')->name('register');
+    Route::post('login', 'PassportController@login')->name('login');
 });
 Route::middleware('auth:api')->group(function(){
     Route::apiResource('students',StudentController::class);
-
+    Route::post('students-import',[StudentController::class,'importFile']);
+    Route::get('students-export',[StudentController::class,'exportFile']);
 });
 
 

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StudentsExport;
+use App\Imports\StudentsImport;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Resources\StudentResource;
 use App\Http\Resources\StudentCollection;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -63,6 +66,7 @@ class StudentController extends Controller
     public function update(UpdateStudentRequest $request, Student $student)
     {
         $student->update($request->all());
+        return new StudentResource($student);
     }
 
     /**
@@ -71,5 +75,13 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+
+    public function importFile(Request $request){
+        Student::truncate();
+        Excel::import(new StudentsImport, $request->file('file')->store('temp'));
+    }
+    public function exportFile(){
+        return Excel::download(new StudentsExport,'students.xlsx');
     }
 }

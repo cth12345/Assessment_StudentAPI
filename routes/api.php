@@ -3,6 +3,7 @@
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PassportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 Route::group(['namespace'=>'App\Http\Controllers'],function(){
+    Route::post('register', 'PassportController@register');
+    Route::post('login', 'PassportController@login');
+});
+Route::middleware('auth:api')->group(function(){
     Route::apiResource('students',StudentController::class);
+
 });
 
 

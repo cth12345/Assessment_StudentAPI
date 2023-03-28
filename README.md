@@ -7,7 +7,7 @@ perform operations such as viewing, searching, adding, editing students informat
 
 Users are expected to have the softwares below installed:
 - PHP 
-- Database (Ex: MySQL)
+- DBMS (Ex: MySQL)
 - IDE (Ex: Visual Studio Code)
 - API Platform (Ex: Postman)
 

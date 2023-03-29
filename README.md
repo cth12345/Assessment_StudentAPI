@@ -26,7 +26,7 @@ After downloading the zip file from GitHub, several steps would still be require
 10. Run 'php artisan passport:client --personal' to create personal client access
 
 ## API Demonstration
-After completing the processes above, the API would then be ready to be used. It is recommended to run the API using Postman and below is a video demonstrating the usage of the API using Postman and the Postman Link.
+After completing the processes above, the API would then be ready to be used. It is recommended to run the API using Postman and below is the Postman Link of the collection of requests
 
 ***Postman Collection Link: https://api.postman.com/collections/26563914-bc98350d-dab7-4286-8946-aa65b8867335?access_key=PMAT-01GWM125XGC1X5FN3SF51YSACR***
 
